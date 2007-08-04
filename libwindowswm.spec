@@ -54,7 +54,7 @@ Development files for %{name}
 %{_libdir}/libWindowsWM.so
 %{_libdir}/libWindowsWM.la
 %{_libdir}/pkgconfig/windowswm.pc
-%{_mandir}/man3/WindowsWM.3.bz2
+%{_mandir}/man3/WindowsWM.3*
 
 
 #-----------------------------------------------------------
