@@ -1,13 +1,21 @@
-%define libwindowswm %mklibname windowswm 7
-Name: libwindowswm
-Summary:  The WindowsWM Library
-Version: 1.0.0
-Release: %mkrel 3
-Group: Development/X11
-License: MIT
-URL: http://xorg.freedesktop.org
-Source0: http://xorg.freedesktop.org/releases/individual/lib/libWindowsWM-%{version}.tar.bz2
-BuildRoot: %{_tmppath}/%{name}-root
+%define name	libwindowswm
+%define version	1.0.0
+%define release	%mkrel 4
+
+%define major		7
+%define libname		%mklibname windowswm %major
+%define develname	%mklibname windowswm -d
+%define staticname	%mklibname windowswm -d -s
+
+Name:		%{name}
+Summary:	The WindowsWM Library
+Version:	%{version}
+Release:	%{release}
+Group:		Development/X11
+License:	MIT
+URL:		http://xorg.freedesktop.org
+Source0:	http://xorg.freedesktop.org/releases/individual/lib/libWindowsWM-%{version}.tar.bz2
+BuildRoot:	%{_tmppath}/%{name}-root
 
 BuildRequires: libx11-devel >= 1.0.0
 BuildRequires: libxext-devel >= 1.0.0
@@ -19,28 +27,29 @@ The WindowsWM Library
 
 #-----------------------------------------------------------
 
-%package -n %{libwindowswm}
+%package -n %{libname}
 Summary:  The WindowsWM Library
 Group: Development/X11
 Conflicts: libxorg-x11 < 7.0
 Provides: %{name} = %{version}
 
-%description -n %{libwindowswm}
+%description -n %{libname}
 The WindowsWM Library
 
 #-----------------------------------------------------------
 
-%package -n %{libwindowswm}-devel
+%package -n %{develname}
 Summary: Development files for %{name}
 Group: Development/X11
-Requires: %{libwindowswm} = %{version}
-Provides: libwindowswm-devel = %{version}-%{release}
+Requires: %{libname} = %{version}
+Provides: %{name}-devel = %{version}-%{release}
 Conflicts: libxorg-x11-devel < 7.0
+Obsoletes: %{mklibname windowswm 7 -d}
 
-%description -n %{libwindowswm}-devel
+%description -n %{develname}
 Development files for %{name}
 
-%files -n %{libwindowswm}-devel
+%files -n %{develname}
 %defattr(-,root,root)
 %{_libdir}/libWindowsWM.so
 %{_libdir}/libWindowsWM.la
@@ -50,17 +59,18 @@ Development files for %{name}
 
 #-----------------------------------------------------------
 
-%package -n %{libwindowswm}-static-devel
+%package -n %{staticname}
 Summary: Static development files for %{name}
 Group: Development/X11
-Requires: %{libwindowswm}-devel = %{version}
-Provides: libwindowswm-static-devel = %{version}-%{release}
+Requires: %{develname} = %{version}
+Provides: %{name}-static-devel = %{version}-%{release}
 Conflicts: libxorg-x11-static-devel < 7.0
+Obsoletes: %{mklibname windowswm 7 -d -s}
 
-%description -n %{libwindowswm}-static-devel
+%description -n %{staticname}
 Static development files for %{name}
 
-%files -n %{libwindowswm}-static-devel
+%files -n %{staticname}
 %defattr(-,root,root)
 %{_libdir}/libWindowsWM.a
 
@@ -85,9 +95,6 @@ rm -rf %{buildroot}
 %post -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
 
-%files -n %{libwindowswm}
+%files -n %{libname}
 %defattr(-,root,root)
-%{_libdir}/libWindowsWM.so.7
-%{_libdir}/libWindowsWM.so.7.0.0
-
-
+%{_libdir}/libWindowsWM.so.%{major}*
