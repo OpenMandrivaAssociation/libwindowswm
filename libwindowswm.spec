@@ -1,6 +1,6 @@
 %define name	libwindowswm
-%define version	1.0.0
-%define release	%mkrel 7
+%define version	1.0.1
+%define release	%mkrel 1
 
 %define major		7
 %define libname		%mklibname windowswm %major
