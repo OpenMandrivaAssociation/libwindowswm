@@ -52,7 +52,6 @@ Development files for %{name}
 %files -n %{develname}
 %defattr(-,root,root)
 %{_libdir}/libWindowsWM.so
-%{_libdir}/libWindowsWM.la
 %{_libdir}/pkgconfig/windowswm.pc
 %{_mandir}/man3/WindowsWM.3*
 
@@ -86,18 +85,7 @@ Static development files for %{name}
 %make
 
 %install
-rm -rf %{buildroot}
 %makeinstall_std
-
-%clean
-rm -rf %{buildroot}
-
-%if %mdkversion < 200900
-%post -p /sbin/ldconfig
-%endif
-%if %mdkversion < 200900
-%postun -p /sbin/ldconfig
-%endif
 
 %files -n %{libname}
 %defattr(-,root,root)
