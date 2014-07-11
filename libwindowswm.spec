@@ -5,7 +5,7 @@
 Summary:	The WindowsWM Library
 Name:		libwindowswm
 Version:	1.0.1
-Release:	12
+Release:	13
 Group:		Development/X11
 License:	MIT
 Url:		http://xorg.freedesktop.org
